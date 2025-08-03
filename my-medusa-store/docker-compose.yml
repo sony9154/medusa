@@ -1,0 +1,46 @@
+services:
+  postgres:
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: medusa-docker
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres-ssl/server.crt:/var/lib/postgresql/server.crt:ro
+      - ./postgres-ssl/server.key:/var/lib/postgresql/server.key:ro
+    command: >
+      postgres
+      -c ssl=on
+      -c ssl_cert_file=/var/lib/postgresql/server.crt
+      -c ssl_key_file=/var/lib/postgresql/server.key
+
+  redis:
+    image: redis:7-alpine
+    restart: always
+    ports:
+      - "6379:6379"
+
+  medusa:
+    build: .
+    restart: always
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/medusa-docker?sslmode=prefer
+      REDIS_URL: redis://redis:6379
+      NPM_CONFIG_UPDATE_NOTIFIER: false
+      NODE_ENV: development
+      NODE_TLS_REJECT_UNAUTHORIZED: "0"
+    ports:
+      - "9000:9000"
+    volumes:
+      - .:/server
+      - /server/node_modules
+
+volumes:
+  postgres_data:
