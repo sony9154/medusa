@@ -207,7 +207,7 @@ chmod 644 postgres-ssl/server.crt
 - 掛載證書文件到容器
 - 設置 PostgreSQL 啟動參數啟用 SSL
 
-#### 3. 客戶端 SSL 配置
+#### 3. 會員端 SSL 配置
 在 Medusa 環境變量中設置：
 ```bash
 DATABASE_URL=postgres://postgres:postgres@postgres:5432/medusa-docker?sslmode=prefer

@@ -1,0 +1,55 @@
+{
+  "customers": {
+    "domain": "會員",
+    "list": {
+      "noRecordsMessage": "您的會員將顯示在這裡。"
+    },
+    "create": {
+      "successToast": "會員創建成功。"
+    }
+  },
+  "customerGroups": {
+    "domain": "會員群組",
+    "subtitle": "將會員組織成群組。群組可以有不同的促銷和價格。",
+    "list": {
+      "empty": {
+        "heading": "暫無會員組"
+      }
+    },
+    "delete": {
+      "title": "刪除會員群組",
+      "description": "您即將刪除會員群組 {{name}}。此操作無法撤消。",
+      "successToast": "會員群組 {{name}} 刪除成功。"
+    },
+    "customers": {
+      "alreadyAddedTooltip": "該會員已添加到群組。",
+      "add": {
+        "successToast_one": "會員已成功添加到群組。",
+        "successToast_other": "會員已成功添加到群組。"
+      }
+    }
+  },
+  "fields": {
+    "customer": "會員"
+  },
+  "general": {
+    "customer_groups": "會員組"
+  },
+  "commands": {
+    "groups": {
+      "customer": "會員",
+      "customerGroup": "會員組"
+    }
+  },
+  "promotions": {
+    "fields": {
+      "customerAvailability": {
+        "header": "選擇會員組",
+        "label": "會員可用性",
+        "hint": "選擇哪些會員組的價格列表應該應用。",
+        "placeholder": "搜索會員組",
+        "attribute": "會員組"
+      }
+    }
+  }
+}

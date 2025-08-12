@@ -13,5 +13,10 @@ module.exports = defineConfig({
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
       useHTTPS: false,
     }
-  }
+  },
+  modules: [
+    {
+      resolve: "./src/modules/member",
+    },
+  ],
 })
