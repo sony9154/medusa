@@ -22,6 +22,10 @@ import {
   MemberPhoneHeader,
 } from "../../../components/table/table-cells/member/member-phone-cell"
 import {
+  MemberStatusCell,
+  MemberStatusHeader,
+} from "../../../components/table/table-cells/member/member-status-cell"
+import {
   FirstSeenCell,
   FirstSeenHeader,
 } from "../../../components/table/table-cells/customer/first-seen-cell"
@@ -52,6 +56,10 @@ export const useMemberTableColumns = () => {
       columnHelper.accessor("member.phone", {
         header: () => <MemberPhoneHeader />,
         cell: ({ getValue }) => <MemberPhoneCell phone={getValue()} />,
+      }),
+      columnHelper.accessor("member.status", {
+        header: () => <MemberStatusHeader />,
+        cell: ({ getValue }) => <MemberStatusCell status={getValue() || "報到"} />,
       }),
       columnHelper.accessor("customer.email", {
         header: () => <EmailHeader />,

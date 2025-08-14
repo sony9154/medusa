@@ -14,8 +14,7 @@ import { useCreateCustomer } from "../../../../../hooks/api/customers"
 
 const CreateCustomerSchema = zod.object({
   email: zod.string().email(),
-  first_name: zod.string().optional(),
-  last_name: zod.string().optional(),
+  full_name: zod.string().min(1, "請輸入姓名"),
   company_name: zod.string().optional(),
   phone: zod.string().optional(),
   // 會員欄位
@@ -36,8 +35,7 @@ export const CreateCustomerForm = () => {
   const form = useForm<zod.infer<typeof CreateCustomerSchema>>({
     defaultValues: {
       email: "",
-      first_name: "",
-      last_name: "",
+      full_name: "",
       phone: "",
       company_name: "",
       // 會員欄位預設值
@@ -52,63 +50,45 @@ export const CreateCustomerForm = () => {
   })
 
   const handleSubmit = form.handleSubmit(async (data) => {
-    // 同步姓名到會員資料
-    const fullName = `${data.first_name || ''} ${data.last_name || ''}`.trim()
-    
     try {
-      // 先創建客戶
+      // 創建客戶 - 將完整姓名存為 first_name
       const customerResponse = await mutateAsync({
         email: data.email,
-        first_name: data.first_name || undefined,
-        last_name: data.last_name || undefined,
+        first_name: data.full_name || undefined,
+        last_name: undefined,
         company_name: data.company_name || undefined,
         phone: data.phone || undefined,
       })
       
-      // 然後創建會員資料
+      // 暫時將會員資料存入 localStorage，模擬會員功能
       const memberData = {
+        customer_id: customerResponse.customer.id,
         type: data.member_type,
-        name: fullName,
+        name: data.full_name,
         phone: data.phone || '',
-        member_number: data.member_number || '',
+        member_number: data.member_number || customerResponse.customer.id.slice(-6),
         id_card: data.id_card || '',
-        birthday: data.birthday ? data.birthday + 'T00:00:00.000Z' : '',
+        birthday: data.birthday || '',
+        gender: "未知", // 暫時設為未知，未來可以加入性別欄位
         email: data.email,
         address: data.address || '',
         notes: data.notes || '',
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
       }
       
-      console.log('正在創建會員資料:', memberData)
-      console.log('客戶ID:', customerResponse.customer.id)
-      console.log('API 路徑:', `/admin/customers-with-members/${customerResponse.customer.id}`)
+      // 將會員資料存入 localStorage
+      const memberKey = `member_${customerResponse.customer.id}`
+      localStorage.setItem(memberKey, JSON.stringify(memberData))
       
-      // 發送會員資料到自定義 API
-      const memberResponse = await fetch(`/admin/customers-with-members/${customerResponse.customer.id}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify({ member_data: memberData })
-      })
+      console.log('已將會員資料存入 localStorage:', memberData)
       
-      console.log('會員 API 響應狀態:', memberResponse.status)
+      toast.success(`成功創建會員：${data.full_name}`)
+      handleSuccess(`/customers`)
       
-      if (memberResponse.ok) {
-        toast.success(
-          t("customers.create.successToast", {
-            email: customerResponse.customer.email,
-          })
-        )
-        handleSuccess(`/customers/${customerResponse.customer.id}`)
-      } else {
-        const errorText = await memberResponse.text()
-        console.error('會員資料創建失敗:', errorText)
-        toast.error(`會員資料創建失敗: ${errorText}`)
-      }
     } catch (error: any) {
-      console.error('創建客戶/會員失敗:', error)
-      toast.error(error.message || '創建失敗')
+      console.error('創建會員失敗:', error)
+      toast.error(error.message || '創建會員失敗')
     }
   })
 
@@ -168,28 +148,13 @@ export const CreateCustomerForm = () => {
               />
               <Form.Field
                 control={form.control}
-                name="first_name"
+                name="full_name"
                 render={({ field }) => {
                   return (
                     <Form.Item>
-                      <Form.Label optional>名</Form.Label>
+                      <Form.Label>姓名 *</Form.Label>
                       <Form.Control>
-                        <Input autoComplete="off" {...field} />
-                      </Form.Control>
-                      <Form.ErrorMessage />
-                    </Form.Item>
-                  )
-                }}
-              />
-              <Form.Field
-                control={form.control}
-                name="last_name"
-                render={({ field }) => {
-                  return (
-                    <Form.Item>
-                      <Form.Label optional>姓</Form.Label>
-                      <Form.Control>
-                        <Input autoComplete="off" {...field} />
+                        <Input autoComplete="off" placeholder="請輸入完整姓名" {...field} />
                       </Form.Control>
                       <Form.ErrorMessage />
                     </Form.Item>

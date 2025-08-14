@@ -12,6 +12,7 @@ const Member = model.define("member", {
   email: model.text(),
   address: model.text(),
   notes: model.text().nullable(),
+  status: model.text().default("報到"),
 })
 
 export default Member

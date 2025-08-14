@@ -9,7 +9,7 @@ import { Link } from "react-router-dom"
 import { HttpTypes } from "@medusajs/types"
 import { ActionMenu } from "../../../../../components/common/action-menu"
 import { _DataTable } from "../../../../../components/table/data-table"
-import { useCustomers } from "../../../../../hooks/api/customers"
+import { useCustomersWithMembers, CustomerWithMember } from "../../../../../hooks/api/customers-with-members"
 import { useCustomerTableColumns } from "../../../../../hooks/table/columns/use-customer-table-columns"
 import { useCustomerTableFilters } from "../../../../../hooks/table/filters/use-customer-table-filters"
 import { useCustomerTableQuery } from "../../../../../hooks/table/query/use-customer-table-query"
@@ -21,7 +21,7 @@ export const CustomerListTable = () => {
   const { t } = useTranslation()
 
   const { searchParams, raw } = useCustomerTableQuery({ pageSize: PAGE_SIZE })
-  const { customers, count, isLoading, isError, error } = useCustomers(
+  const { customers, count, isLoading, isError, error } = useCustomersWithMembers(
     {
       ...searchParams,
     },
@@ -38,7 +38,7 @@ export const CustomerListTable = () => {
     columns,
     count,
     enablePagination: true,
-    getRowId: (row) => row.id,
+    getRowId: (row) => row.customer.id,
     pageSize: PAGE_SIZE,
   })
 
@@ -65,13 +65,15 @@ export const CustomerListTable = () => {
         orderBy={[
           { key: "member_type", label: "會員類型" },
           { key: "member_number", label: "會員編號" },
-          { key: "first_name", label: t("fields.firstName") },
+          { key: "name", label: "姓名" },
           { key: "phone", label: "電話" },
+          { key: "birthday", label: "出生年月日" },
+          { key: "gender", label: "性別" },
           { key: "email", label: t("fields.email") },
           { key: "created_at", label: t("fields.createdAt") },
         ]}
         isLoading={isLoading}
-        navigateTo={(row) => row.original.id}
+        navigateTo={(row) => row.original.customer.id}
         search
         queryObject={raw}
         noRecords={{
@@ -83,9 +85,9 @@ export const CustomerListTable = () => {
 }
 
 const CustomerActions = ({
-  customer,
+  customerWithMember,
 }: {
-  customer: HttpTypes.AdminCustomer
+  customerWithMember: CustomerWithMember
 }) => {
   const { t } = useTranslation()
 
@@ -97,7 +99,7 @@ const CustomerActions = ({
             {
               icon: <PencilSquare />,
               label: t("actions.edit"),
-              to: `/customers/${customer.id}/edit`,
+              to: `/customers/${customerWithMember.customer.id}/edit`,
             },
           ],
         },
@@ -106,7 +108,7 @@ const CustomerActions = ({
   )
 }
 
-const columnHelper = createColumnHelper<HttpTypes.AdminCustomer>()
+const columnHelper = createColumnHelper<CustomerWithMember>()
 
 const useColumns = () => {
   const columns = useCustomerTableColumns()
@@ -116,7 +118,7 @@ const useColumns = () => {
       ...columns,
       columnHelper.display({
         id: "actions",
-        cell: ({ row }) => <CustomerActions customer={row.original} />,
+        cell: ({ row }) => <CustomerActions customerWithMember={row.original} />,
       }),
     ],
     [columns]

@@ -6,10 +6,6 @@ import {
   EmailHeader,
 } from "../../../components/table/table-cells/common/email-cell"
 import {
-  NameCell,
-  NameHeader,
-} from "../../../components/table/table-cells/common/name-cell"
-import {
   AccountCell,
   AccountHeader,
 } from "../../../components/table/table-cells/customer/account-cell/account-cell"
@@ -17,9 +13,9 @@ import {
   FirstSeenCell,
   FirstSeenHeader,
 } from "../../../components/table/table-cells/customer/first-seen-cell"
-import { HttpTypes } from "@medusajs/types"
+import { CustomerWithMember } from "../../api/customers-with-members"
 
-const columnHelper = createColumnHelper<HttpTypes.AdminCustomer>()
+const columnHelper = createColumnHelper<CustomerWithMember>()
 
 export const useCustomerTableColumns = () => {
   return useMemo(
@@ -27,34 +23,64 @@ export const useCustomerTableColumns = () => {
       columnHelper.display({
         id: "member_type",
         header: () => <span>會員類型</span>,
-        cell: () => <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700">一般</span>,
+        cell: ({ row: { original } }) => (
+          <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700">
+            {original.member?.type || "一般"}
+          </span>
+        ),
       }),
       columnHelper.display({
         id: "member_number", 
         header: () => <span>會員編號</span>,
-        cell: ({ row: { original } }) => <span className="font-mono text-sm">{original.id.slice(-6)}</span>,
+        cell: ({ row: { original } }) => (
+          <span className="font-mono text-sm">{original.member?.member_number || original.customer.id.slice(-6)}</span>
+        ),
       }),
       columnHelper.display({
         id: "name",
-        header: () => <NameHeader />,
-        cell: ({
-          row: {
-            original: { first_name, last_name },
-          },
-        }) => <NameCell firstName={first_name} lastName={last_name} />,
+        header: () => <span>姓名</span>,
+        cell: ({ row: { original } }) => (
+          <span className="font-medium text-ui-fg-base">
+            {original.member?.name || "未知"}
+          </span>
+        ),
       }),
       columnHelper.display({
         id: "phone",
         header: () => <span>電話</span>,
-        cell: ({ row: { original } }) => <span className="font-mono text-sm">{original.phone || "-"}</span>,
+        cell: ({ row: { original } }) => (
+          <span className="font-mono text-sm">{original.member?.phone || original.customer.phone || "-"}</span>
+        ),
       }),
-      columnHelper.accessor("email", {
+      columnHelper.display({
+        id: "birthday",
+        header: () => <span>出生年月日</span>,
+        cell: ({ row: { original } }) => (
+          <span className="text-sm">{original.member?.birthday || "-"}</span>
+        ),
+      }),
+      columnHelper.display({
+        id: "gender",
+        header: () => <span>性別</span>,
+        cell: ({ row: { original } }) => (
+          <span className="inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-gray-700">
+            {original.member?.gender || "未知"}
+          </span>
+        ),
+      }),
+      columnHelper.display({
+        id: "email",
         header: () => <EmailHeader />,
-        cell: ({ getValue }) => <EmailCell email={getValue()} />,
+        cell: ({ row: { original } }) => (
+          <EmailCell email={original.member?.email || original.customer.email} />
+        ),
       }),
-      columnHelper.accessor("created_at", {
+      columnHelper.display({
+        id: "created_at",
         header: () => <FirstSeenHeader />,
-        cell: ({ getValue }) => <FirstSeenCell createdAt={getValue()} />,
+        cell: ({ row: { original } }) => (
+          <FirstSeenCell createdAt={original.customer.created_at} />
+        ),
       }),
     ],
     []

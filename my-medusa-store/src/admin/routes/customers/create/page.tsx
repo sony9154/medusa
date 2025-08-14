@@ -20,6 +20,7 @@ type MemberData = {
   email: string
   address: string
   notes?: string
+  status: string
 }
 
 const CreateCustomerPage = () => {
@@ -39,7 +40,8 @@ const CreateCustomerPage = () => {
     birthday: "",
     email: "",
     address: "",
-    notes: ""
+    notes: "",
+    status: "報到"
   })
 
   const [isCreating, setIsCreating] = useState(false)
@@ -216,6 +218,29 @@ const CreateCustomerPage = () => {
                   value={memberData.birthday ? memberData.birthday.split('T')[0] : ''}
                   onChange={(e) => handleMemberChange('birthday', e.target.value + 'T00:00:00.000Z')}
                 />
+              </div>
+
+              <div>
+                <Label htmlFor="status">狀態</Label>
+                <Select 
+                  onValueChange={(value) => handleMemberChange('status', value)}
+                  value={memberData.status}
+                >
+                  <Select.Trigger>
+                    <Select.Value placeholder="選擇狀態" />
+                  </Select.Trigger>
+                  <Select.Content>
+                    <Select.Item value="報到">報到</Select.Item>
+                    <Select.Item value="量測">量測</Select.Item>
+                    <Select.Item value="門診">門診</Select.Item>
+                    <Select.Item value="衛教">衛教</Select.Item>
+                    <Select.Item value="結帳">結帳</Select.Item>
+                    <Select.Item value="預約">預約</Select.Item>
+                    <Select.Item value="出貨">出貨</Select.Item>
+                    <Select.Item value="異常">異常</Select.Item>
+                    <Select.Item value="課程">課程</Select.Item>
+                  </Select.Content>
+                </Select>
               </div>
 
 

@@ -22,6 +22,7 @@ export interface MemberData {
   member_number: string
   id_card: string
   birthday: string
+  gender: string
   email: string
   address: string
   notes: string
@@ -48,42 +49,112 @@ export const useCustomersWithMembers = (
 ) => {
   const { data, ...rest } = useQuery({
     queryFn: async () => {
-      // 暫時使用標準客戶 API 來避免錯誤
-      const response = await fetch("/admin/customers", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      })
-      
-      if (!response.ok) {
-        throw new Error("Failed to fetch customers")
-      }
-      
-      const result = await response.json()
-      
-      // 將標準客戶格式轉換為會員格式
-      const customersWithMembers = result.customers.map((customer: any) => ({
-        customer,
-        member: {
-          type: "一般",
-          member_number: customer.id.slice(-6),
-          name: `${customer.first_name || ""} ${customer.last_name || ""}`.trim(),
-          phone: customer.phone || "",
-          email: customer.email,
-          id_card: "",
-          birthday: "",
-          address: "",
-          notes: "",
+      try {
+        // 模擬數據
+        const mockCustomers = [
+          {
+            id: "cust_01H0123456789",
+            email: "test@example.com", 
+            full_name: "張小華",
+            phone: "+886-912-345-678",
+            birthday: "1985-06-15",
+            gender: "男",
+            created_at: "2024-01-01T00:00:00.000Z",
+            updated_at: "2024-01-01T00:00:00.000Z",
+          },
+          {
+            id: "cust_01H0987654321",
+            email: "demo@example.com",
+            full_name: "李美玲",
+            phone: "+886-987-654-321",
+            birthday: "1990-03-22",
+            gender: "女",
+            created_at: "2024-01-01T00:00:00.000Z", 
+            updated_at: "2024-01-01T00:00:00.000Z",
+          },
+          {
+            id: "cust_01H0555666777",
+            email: "sample@example.com",
+            full_name: "王小明",
+            phone: "+886-955-123-456",
+            birthday: "1992-11-08",
+            gender: "男",
+            created_at: "2024-01-15T00:00:00.000Z", 
+            updated_at: "2024-01-15T00:00:00.000Z",
+          },
+          {
+            id: "cust_01H0888999000",
+            email: "chen@example.com",
+            full_name: "陳雅婷",
+            phone: "+886-933-888-999",
+            birthday: "1988-07-12",
+            gender: "女",
+            created_at: "2024-01-20T00:00:00.000Z", 
+            updated_at: "2024-01-20T00:00:00.000Z",
+          }
+        ]
+        
+        // 從 localStorage 讀取真實創建的會員資料
+        const realMembers: any[] = []
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i)
+          if (key?.startsWith('member_')) {
+            try {
+              const memberData = JSON.parse(localStorage.getItem(key) || '{}')
+              realMembers.push({
+                id: memberData.customer_id,
+                email: memberData.email,
+                full_name: memberData.name,
+                phone: memberData.phone,
+                birthday: memberData.birthday,
+                gender: memberData.gender || "未知",
+                created_at: memberData.created_at,
+                updated_at: memberData.updated_at,
+                member_data: memberData
+              })
+            } catch (error) {
+              console.error('解析會員資料失敗:', key, error)
+            }
+          }
         }
-      }))
-      
-      return {
-        customers: customersWithMembers,
-        count: result.count,
-        offset: result.offset,
-        limit: result.limit,
+        
+        console.log('從 localStorage 讀取的會員:', realMembers.length)
+        
+        // 合併模擬資料和真實資料
+        const allCustomers = [...mockCustomers, ...realMembers]
+        
+        // 將客戶格式轉換為會員格式
+        const customersWithMembers = allCustomers.map((customer: any) => {
+          return {
+            customer,
+            member: customer.member_data || {
+              id: customer.id,
+              customer_id: customer.id,
+              type: "一般",
+              member_number: customer.id?.slice(-6) || "000000",
+              name: customer.full_name || customer.email || "未知",
+              phone: customer.phone || "",
+              email: customer.email || "",
+              id_card: "",
+              birthday: customer.birthday || "",
+              gender: customer.gender || "未知",
+              address: "",
+              notes: "",
+              created_at: customer.created_at,
+              updated_at: customer.updated_at,
+            }
+          }
+        })
+        
+        return {
+          customers: customersWithMembers,
+          count: customersWithMembers.length,
+          offset: 0,
+          limit: 20,
+        }
+      } catch (error) {
+        console.error('Error in useCustomersWithMembers:', error)
+        throw error
       }
     },
     queryKey: customersWithMembersQueryKeys.list(query),
@@ -161,3 +232,4 @@ export const useUpdateCustomerWithMember = (
     ...options,
   })
 }
+
