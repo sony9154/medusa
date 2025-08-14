@@ -63,12 +63,12 @@ export const CustomerListTable = () => {
         count={count}
         filters={filters}
         orderBy={[
-          { key: "email", label: t("fields.email") },
+          { key: "member_type", label: "會員類型" },
+          { key: "member_number", label: "會員編號" },
           { key: "first_name", label: t("fields.firstName") },
-          { key: "last_name", label: t("fields.lastName") },
-          { key: "has_account", label: t("customers.hasAccount") },
+          { key: "phone", label: "電話" },
+          { key: "email", label: t("fields.email") },
           { key: "created_at", label: t("fields.createdAt") },
-          { key: "updated_at", label: t("fields.updatedAt") },
         ]}
         isLoading={isLoading}
         navigateTo={(row) => row.original.id}

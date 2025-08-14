@@ -18,6 +18,7 @@ import mk from "./mk.json"
 import mn from "./mn.json"
 import ar from "./ar.json"
 import zhCN from "./zhCN.json"
+import zhTW from "./zhTW.json"
 import fa from "./fa.json"
 import cs from "./cs.json"
 import ru from "./ru.json"
@@ -90,6 +91,9 @@ export default {
   },
   zhCN: {
     translation: zhCN,
+  },
+  zhTW: {
+    translation: zhTW,
   },
   fa: {
     translation: fa,

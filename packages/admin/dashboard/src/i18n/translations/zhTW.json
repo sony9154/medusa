@@ -147,7 +147,7 @@
     "search": {
       "label": "搜索",
       "title": "搜索",
-      "description": "搜索整個商店,包括訂單、產品、客戶等。",
+      "description": "搜索整個商店,包括訂單、產品、會員等。",
       "allAreas": "所有區域",
       "navigation": "導航",
       "openResult": "打開結果",
@@ -160,8 +160,8 @@
       "loadMore": "加載更多 {{count}} 項",
       "groups": {
         "all": "所有區域",
-        "customer": "客戶",
-        "customerGroup": "客戶組",
+        "customer": "會員",
+        "customerGroup": "會員組",
         "product": "產品",
         "productVariant": "產品變體",
         "inventory": "庫存",
@@ -197,8 +197,8 @@
         "goToProducts": "產品",
         "goToCollections": "系列",
         "goToCategories": "分類",
-        "goToCustomers": "客戶",
-        "goToCustomerGroups": "客戶組",
+        "goToCustomers": "會員",
+        "goToCustomerGroups": "會員組",
         "goToInventory": "庫存",
         "goToReservations": "預訂",
         "goToPriceLists": "價格表",
@@ -652,7 +652,7 @@
         "manageInventoryLabel": "管理庫存",
         "manageInventoryHint": "啓用後,我們將在創建訂單和退貨時為您更改庫存數量。",
         "allowBackordersLabel": "允許缺貨訂購",
-        "allowBackordersHint": "啓用後,即使沒有可用數量,客戶也可以購買該變體。",
+        "allowBackordersHint": "啓用後,即使沒有可用數量,會員也可以購買該變體。",
         "toast": {
           "levelsBatch": "庫存水平已更新。",
           "update": "庫存項目更新成功。",
@@ -892,45 +892,45 @@
     "recipient": "接收人"
   },
   "customers": {
-    "domain": "客戶",
+    "domain": "會員",
     "list": {
-      "noRecordsMessage": "您的客戶將顯示在這裡。"
+      "noRecordsMessage": "您的會員將顯示在這裡。"
     },
     "create": {
-      "header": "創建客戶",
-      "hint": "創建新客戶並管理其詳細信息。",
-      "successToast": "客戶 {{email}} 創建成功。"
+      "header": "創建會員",
+      "hint": "創建新會員並管理其詳細信息。",
+      "successToast": "會員 {{email}} 創建成功。"
     },
     "groups": {
-      "label": "客戶群組",
-      "remove": "您確定要將客戶從 {{name }}客戶群組中移除嗎？",
-      "removeMany": "您確定要將客戶從以下客戶群組中移除：{{groups}}？",
-      "alreadyAddedTooltip": "該客戶已在此客戶群組中。",
+      "label": "會員群組",
+      "remove": "您確定要將會員從 {{name }}會員群組中移除嗎？",
+      "removeMany": "您確定要將會員從以下會員群組中移除：{{groups}}？",
+      "alreadyAddedTooltip": "該會員已在此會員群組中。",
       "list": {
-        "noRecordsMessage": "該客戶不屬於任何群組。"
+        "noRecordsMessage": "該會員不屬於任何群組。"
       },
       "add": {
-        "success": "客戶已添加到：{{groups}}。",
+        "success": "會員已添加到：{{groups}}。",
         "list": {
-          "noRecordsMessage": "請先創建客戶群組。"
+          "noRecordsMessage": "請先創建會員群組。"
         }
       },
       "removed": {
-        "success": "客戶已從以下群組中移除：{{groups}}。",
+        "success": "會員已從以下群組中移除：{{groups}}。",
         "list": {
-          "noRecordsMessage": "請先創建客戶群組。"
+          "noRecordsMessage": "請先創建會員群組。"
         }
       }
     },
     "edit": {
-      "header": "編輯客戶",
-      "emailDisabledTooltip": "已註冊客戶的電子郵件地址無法更改。",
-      "successToast": "客戶 {{email}} 更新成功。"
+      "header": "編輯會員",
+      "emailDisabledTooltip": "已註冊會員的電子郵件地址無法更改。",
+      "successToast": "會員 {{email}} 更新成功。"
     },
     "delete": {
-      "title": "刪除客戶",
-      "description": "您即將刪除客戶 {{email}}。此操作無法撤消。",
-      "successToast": "客戶 {{email}} 刪除成功。"
+      "title": "刪除會員",
+      "description": "您即將刪除會員 {{email}}。此操作無法撤消。",
+      "successToast": "會員 {{email}} 刪除成功。"
     },
     "fields": {
       "guest": "訪客",
@@ -957,55 +957,55 @@
       },
       "create": {
         "header": "創建地址",
-        "hint": "為客戶創建新地址。",
+        "hint": "為會員創建新地址。",
         "successToast": "地址創建成功。"
       }
     }
   },
   "customerGroups": {
-    "domain": "客戶群組",
-    "subtitle": "將客戶組織成群組。群組可以有不同的促銷和價格。",
+    "domain": "會員群組",
+    "subtitle": "將會員組織成群組。群組可以有不同的促銷和價格。",
    "list": {
       "empty": {
-        "heading": "暫無客戶組",
-        "description": "當前沒有可顯示的客戶組。"
+        "heading": "暫無會員組",
+        "description": "當前沒有可顯示的會員組。"
       },
       "filtered": {
         "heading": "無搜索結果",
-        "description": "沒有符合當前篩選條件的客戶組。"
+        "description": "沒有符合當前篩選條件的會員組。"
       }
     },
     "create": {
-      "header": "創建客戶群組",
-      "hint": "創建新的客戶群組以細分您的客戶。",
-      "successToast": "客戶群組 {{name}} 創建成功。"
+      "header": "創建會員群組",
+      "hint": "創建新的會員群組以細分您的會員。",
+      "successToast": "會員群組 {{name}} 創建成功。"
     },
     "edit": {
-      "header": "編輯客戶群組",
-      "successToast": "客戶群組 {{name}} 更新成功。"
+      "header": "編輯會員群組",
+      "successToast": "會員群組 {{name}} 更新成功。"
     },
     "delete": {
-      "title": "刪除客戶群組",
-      "description": "您即將刪除客戶群組 {{name}}。此操作無法撤消。",
-      "successToast": "客戶群組 {{name}} 刪除成功。"
+      "title": "刪除會員群組",
+      "description": "您即將刪除會員群組 {{name}}。此操作無法撤消。",
+      "successToast": "會員群組 {{name}} 刪除成功。"
     },
     "customers": {
-      "alreadyAddedTooltip": "該客戶已添加到群組。",
+      "alreadyAddedTooltip": "該會員已添加到群組。",
       "add": {
-        "successToast_one": "客戶已成功添加到群組。",
-        "successToast_other": "客戶已成功添加到群組。",
+        "successToast_one": "會員已成功添加到群組。",
+        "successToast_other": "會員已成功添加到群組。",
         "list": {
-          "noRecordsMessage": "請先創建客戶。"
+          "noRecordsMessage": "請先創建會員。"
         }
       },
       "remove": {
-        "title_one": "移除客戶",
-        "title_other": "移除客戶",
-        "description_one": "您即將從客戶群組中移除 {{count}} 個客戶。此操作無法撤消。",
-        "description_other": "您即將從客戶群組中移除 {{count}} 個客戶。此操作無法撤消。"
+        "title_one": "移除會員",
+        "title_other": "移除會員",
+        "description_one": "您即將從會員群組中移除 {{count}} 個會員。此操作無法撤消。",
+        "description_other": "您即將從會員群組中移除 {{count}} 個會員。此操作無法撤消。"
       },
       "list": {
-        "noRecordsMessage": "該群組沒有客戶。"
+        "noRecordsMessage": "該群組沒有會員。"
       }
     }
   },
@@ -1049,13 +1049,13 @@
       "requestSuccess": "訂單轉移請求已發送至：{{email}}。",
       "currentOwner": "當前所有者",
       "newOwner": "新所有者",
-      "currentOwnerDescription": "當前與此訂單關聯的客戶。",
-      "newOwnerDescription": "要將此訂單轉移給的客戶。"
+      "currentOwnerDescription": "當前與此訂單關聯的會員。",
+      "newOwnerDescription": "要將此訂單轉移給的會員。"
     },
     "payment": {
       "title": "支付",
       "isReadyToBeCaptured": "支付 <0/> 已準備好被收取。",
-      "totalPaidByCustomer": "客戶已支付總額",
+      "totalPaidByCustomer": "會員已支付總額",
       "capture": "收取支付",
       "capture_short": "收取",
       "refund": "退款",
@@ -1136,13 +1136,13 @@
       "inbound": "入庫",
       "outbound": "出庫",
       "sendNotification": "發送通知",
-      "sendNotificationHint": "通知客戶關於退貨。",
+      "sendNotificationHint": "通知會員關於退貨。",
       "returnTotal": "退貨總計",
       "inboundTotal": "入庫總計",
       "estDifference": "估計差異",
       "outstandingAmount": "未結金額",
       "reason": "原因",
-      "reasonHint": "選擇客戶想要退貨的原因。",
+      "reasonHint": "選擇會員想要退貨的原因。",
       "note": "備注",
       "noInventoryLevel": "無庫存水平",
       "noInventoryLevelDesc": "所選位置沒有所選商品的庫存水平。可以請求退貨，但在為所選位置創建庫存水平之前無法接收。",
@@ -1180,7 +1180,7 @@
         "restockAll": "重新入庫所有商品",
         "itemsLabel": "已收到商品",
         "title": "接收 #{{returnId}} 的商品",
-        "sendNotificationHint": "通知客戶關於已收到的退貨。",
+        "sendNotificationHint": "通知會員關於已收到的退貨。",
         "inventoryWarning": "請注意，我們將根據您上面的輸入自動調整庫存水平。",
         "writeOffInputLabel": "有多少商品損壞？",
         "toast": {
@@ -1290,13 +1290,13 @@
       "trackingNumber": "追蹤號碼",
       "addTracking": "添加追蹤號碼",
       "sendNotification": "發送通知",
-      "sendNotificationHint": "通知客戶關於此發貨。",
+      "sendNotificationHint": "通知會員關於此發貨。",
       "toastCreated": "發貨創建成功。"
     },
     "fulfillment": {
       "cancelWarning": "您即將取消履行。此操作無法撤消。",
       "markAsDeliveredWarning": "您即將將履行標記為已送達。此操作無法撤消。",
-      "differentOptionSelected": "所選的運輸方式與客戶選擇的不同。",
+      "differentOptionSelected": "所選的運輸方式與會員選擇的不同。",
       "disabledItemTooltip": "您選擇的配送方式不允許配送此商品",
       "unfulfilledItems": "未履行商品",
       "statusLabel": "履行狀態",
@@ -1314,8 +1314,8 @@
       "markAsDelivered": "標記為已送達",
       "itemsToFulfillDesc": "選擇要履行的商品和數量",
       "locationDescription": "選擇您想要從哪個位置履行商品。",
-      "sendNotificationHint": "通知客戶關於已創建的履行。",
-      "methodDescription": "選擇與客戶所選不同的配送方式",
+      "sendNotificationHint": "通知會員關於已創建的履行。",
+      "methodDescription": "選擇與會員所選不同的配送方式",
       "error": {
         "wrongQuantity": "只有一件商品可供履行",
         "wrongQuantity_other": "數量應該在 1 和 {{number}} 之間",
@@ -1349,7 +1349,7 @@
     },
     "refund": {
       "title": "創建退款",
-      "sendNotificationHint": "通知客戶關於已創建的退款。",
+      "sendNotificationHint": "通知會員關於已創建的退款。",
       "systemPayment": "系統支付",
       "systemPaymentDesc": "您的一個或多個支付是系統支付。請注意，Medusa 不會處理此類支付的收取和退款。",
       "error": {
@@ -1475,7 +1475,7 @@
       "noCustomItemsAddedLabel": "尚未添加自定義商品",
       "noExistingItemsAddedLabel": "尚未添加現有商品",
       "chooseRegionTooltip": "請先選擇地區",
-      "useExistingCustomerLabel": "使用現有客戶",
+      "useExistingCustomerLabel": "使用現有會員",
       "addShippingMethodsAction": "添加配送方式",
       "unitPriceOverrideLabel": "單價覆蓋",
       "shippingOptionLabel": "配送選項",
@@ -1483,10 +1483,10 @@
       "shippingPriceOverrideLabel": "配送價格覆蓋",
       "shippingPriceOverrideHint": "覆蓋草稿訂單的配送價格。",
       "sendNotificationLabel": "發送通知",
-      "sendNotificationHint": "在創建草稿訂單時通知客戶。"
+      "sendNotificationHint": "在創建草稿訂單時通知會員。"
     },
     "validation": {
-      "requiredEmailOrCustomer": "必須填寫郵箱或客戶信息。",
+      "requiredEmailOrCustomer": "必須填寫郵箱或會員信息。",
       "requiredItems": "至少需要一個商品。",
       "invalidEmail": "郵箱地址必須有效。"
     }
@@ -1653,7 +1653,7 @@
         },
         "enableInStore": {
           "label": "在商店中啓用",
-          "hint": "客戶是否可以在結賬時使用此選項。"
+          "hint": "會員是否可以在結賬時使用此選項。"
         },
         "provider": "履約供應商",
         "profile": "配送方案",
@@ -1708,7 +1708,7 @@
   "taxRegions": {
     "domain": "稅收地區",
     "list": {
-      "hint": "管理客戶從不同國家和地區購物時的收費。"
+      "hint": "管理會員從不同國家和地區購物時的收費。"
     },
     "delete": {
       "confirmation": "您即將刪除稅收地區。此操作無法撤銷。",
@@ -1872,7 +1872,7 @@
           "productCollection": "產品系列",
           "productTag": "產品標籤",
           "productType": "產品類型",
-          "customerGroup": "客戶組"
+          "customerGroup": "會員組"
         },
         "operators": {
           "in": "在",
@@ -1884,14 +1884,14 @@
           "productCollection": "搜索產品系列",
           "productTag": "搜索產品標籤",
           "productType": "搜索產品類型",
-          "customerGroup": "搜索客戶組"
+          "customerGroup": "搜索會員組"
         },
         "tags": {
           "product": "產品",
           "productCollection": "產品系列",
           "productTag": "產品標籤",
           "productType": "產品類型",
-          "customerGroup": "客戶組"
+          "customerGroup": "會員組"
         },
         "modal": {
           "header": "添加目標"
@@ -1975,7 +1975,7 @@
       "conditions": {
         "rules": {
           "title": "誰可以使用此代碼？",
-          "description": "哪些客戶可以使用促銷代碼？如果不設置限制,所有客戶都可以使用促銷代碼。"
+          "description": "哪些會員可以使用促銷代碼？如果不設置限制,所有會員都可以使用促銷代碼。"
         },
         "target-rules": {
           "title": "促銷將應用於哪些商品？",
@@ -2049,26 +2049,26 @@
         "label": "狀態",
         "draft": {
           "title": "草稿",
-          "description": "客戶暫時無法使用此優惠碼"
+          "description": "會員暫時無法使用此優惠碼"
         },
         "active": {
           "title": "啓用",
-          "description": "客戶可以使用此優惠碼"
+          "description": "會員可以使用此優惠碼"
         },
         "inactive": {
           "title": "停用",
-          "description": "客戶將無法使用此優惠碼"
+          "description": "會員將無法使用此優惠碼"
         }
       },
       "method": {
         "label": "方式",
         "code": {
           "title": "促銷代碼",
-          "description": "客戶必須在結賬時輸入此代碼"
+          "description": "會員必須在結賬時輸入此代碼"
         },
         "automatic": {
           "title": "自動",
-          "description": "客戶將在結賬時看到此促銷"
+          "description": "會員將在結賬時看到此促銷"
         }
       },
       "max_quantity": {
@@ -2097,7 +2097,7 @@
       },
       "code": {
         "title": "代碼",
-        "description": "客戶將在結賬時輸入的代碼。"
+        "description": "會員將在結賬時輸入的代碼。"
       },
       "value": {
         "title": "促銷價值"
@@ -2294,7 +2294,7 @@
           },
           "override": {
             "label": "覆蓋",
-            "description": "覆蓋通常用於創建客戶特定的價格。"
+            "description": "覆蓋通常用於創建會員特定的價格。"
           }
         }
       },
@@ -2307,11 +2307,11 @@
         "hint": "計劃價格列表在將來失效。"
       },
       "customerAvailability": {
-        "header": "選擇客戶組",
-        "label": "客戶可用性",
-        "hint": "選擇哪些客戶組的價格列表應該應用。",
-        "placeholder": "搜索客戶組",
-        "attribute": "客戶組"
+        "header": "選擇會員組",
+        "label": "會員可用性",
+        "hint": "選擇哪些會員組的價格列表應該應用。",
+        "placeholder": "搜索會員組",
+        "attribute": "會員組"
       }
     }
   },
@@ -2435,7 +2435,7 @@
       "fulfillmentMethod": "履行方法",
       "type": {
         "outbound": "出站",
-        "outboundHint": "使用此選項如果您正在創建運輸選項以將產品發送給客戶。",
+        "outboundHint": "使用此選項如果您正在創建運輸選項以將產品發送給會員。",
         "return": "返回",
         "returnHint": "使用此選項如果您正在創建運輸選項以將產品返回給您。"
       },
@@ -2669,7 +2669,7 @@
       "label": { "label": "標籤", "placeholder": "錯誤尺寸" },
       "description": {
         "label": "描述",
-        "placeholder": "客戶收到錯誤尺寸"
+        "placeholder": "會員收到錯誤尺寸"
       }
     }
   },
@@ -2882,7 +2882,7 @@
     "search": "搜索",
     "percentage": "百分比",
     "sales_channels": "銷售渠道",
-    "customer_groups": "客戶組",
+    "customer_groups": "會員組",
     "product_tags": "產品標籤",
     "product_types": "產品類型",
     "product_collections": "產品系列",
@@ -2936,7 +2936,7 @@
     "tax": "稅費",
     "created": "已創建",
     "key": "鍵",
-    "customer": "客戶",
+    "customer": "會員",
     "date": "日期",
     "order": "訂單",
     "fulfillment": "履約",

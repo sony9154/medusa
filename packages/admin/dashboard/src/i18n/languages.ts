@@ -17,6 +17,7 @@ import {
   mn,
   ar,
   zhCN,
+  zhTW,
   faIR,
   cs,
   ru,
@@ -157,6 +158,12 @@ export const languages: Language[] = [
     display_name: "简体中文",
     ltr: true,
     date_locale: zhCN,
+  },
+  {
+    code: "zhTW",
+    display_name: "繁體中文",
+    ltr: true,
+    date_locale: zhTW,
   },
   {
     code: "fa",

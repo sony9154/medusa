@@ -24,9 +24,15 @@ const columnHelper = createColumnHelper<HttpTypes.AdminCustomer>()
 export const useCustomerTableColumns = () => {
   return useMemo(
     () => [
-      columnHelper.accessor("email", {
-        header: () => <EmailHeader />,
-        cell: ({ getValue }) => <EmailCell email={getValue()} />,
+      columnHelper.display({
+        id: "member_type",
+        header: () => <span>會員類型</span>,
+        cell: () => <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700">一般</span>,
+      }),
+      columnHelper.display({
+        id: "member_number", 
+        header: () => <span>會員編號</span>,
+        cell: ({ row: { original } }) => <span className="font-mono text-sm">{original.id.slice(-6)}</span>,
       }),
       columnHelper.display({
         id: "name",
@@ -37,9 +43,14 @@ export const useCustomerTableColumns = () => {
           },
         }) => <NameCell firstName={first_name} lastName={last_name} />,
       }),
-      columnHelper.accessor("has_account", {
-        header: () => <AccountHeader />,
-        cell: ({ getValue }) => <AccountCell hasAccount={getValue()} />,
+      columnHelper.display({
+        id: "phone",
+        header: () => <span>電話</span>,
+        cell: ({ row: { original } }) => <span className="font-mono text-sm">{original.phone || "-"}</span>,
+      }),
+      columnHelper.accessor("email", {
+        header: () => <EmailHeader />,
+        cell: ({ getValue }) => <EmailCell email={getValue()} />,
       }),
       columnHelper.accessor("created_at", {
         header: () => <FirstSeenHeader />,

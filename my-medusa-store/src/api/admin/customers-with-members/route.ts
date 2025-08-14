@@ -45,8 +45,8 @@ export const GET = async (
   const customersWithMembers = customers.map(customer => {
     const member = members.find(m => m.customer_id === customer.id)
     return {
-      ...customer,
-      member
+      customer,
+      member: member || null
     }
   })
 

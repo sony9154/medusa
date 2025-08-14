@@ -4,6 +4,7 @@ import translations from "./translations"
 
 export const defaultI18nOptions: InitOptions = {
   debug: process.env.NODE_ENV === "development",
+  lng: "zhTW",
   detection: {
     caches: ["cookie", "localStorage", "header"],
     lookupCookie: "lng",

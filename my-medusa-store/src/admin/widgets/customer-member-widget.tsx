@@ -151,7 +151,6 @@ const CustomerMemberWidget = ({ data }: DetailWidgetProps<AdminCustomer>) => {
                 <Select.Content>
                   <Select.Item value="VIP">VIP</Select.Item>
                   <Select.Item value="一般">一般</Select.Item>
-                  <Select.Item value="企業">企業</Select.Item>
                 </Select.Content>
               </Select>
             ) : (
